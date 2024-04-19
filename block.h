@@ -3,9 +3,11 @@
 
 #include <QGraphicsRectItem>
 
-class Block: public QGraphicsRectItem{
+class Block: public QGraphicsRectItem
+{
 public:
-    // constructors
+
+    // Constructor
     Block(QGraphicsItem* parent=NULL);
 
 };
