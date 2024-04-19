@@ -13,8 +13,9 @@ Health::Health(QGraphicsTextItem *parent): QGraphicsTextItem(parent){
 }
 
 void Health::decrease(){
-    if (health < 1){
-
+    if (health <= 1){
+        health--;
+        setPlainText(QString("Health: ") + QString::number(health));
         QMessageBox * msg = new QMessageBox;
         msg->setText(QString("Game Over! Final Score: ") + QString::number(game->score->getScore()));
         msg->setWindowTitle(QString("Game Over!"));
