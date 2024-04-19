@@ -14,8 +14,8 @@ public:
     Health * health;
 
     void start();
-    void createBlockCol(double x);
-    void creatBlockGrid();
+    void Row_of_Blocks(int n);
+    void Block_Display();
 
     QGraphicsScene* scene;
 

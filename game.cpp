@@ -20,7 +20,7 @@ void Game::start(){
 
     // create a paddle ;)
     Paddle* paddle = new Paddle();
-    QPixmap pixmap1("C:/Users/Abdalrahman/OneDrive/Documents/breakk/paddle.png");
+    QPixmap pixmap1("C:\\Users\\sarah\\Downloads\\paddle.jpg");
     pixmap1 = pixmap1.scaledToWidth(50);
     pixmap1 = pixmap1.scaledToHeight(50);
     paddle->setPixmap(pixmap1);
@@ -39,20 +39,24 @@ void Game::start(){
     health->setPos(200,600);
     scene->addItem(health);
 
-    // create the blocks grid
-    creatBlockGrid();
+    // To show the blocks
+    Block_Display();
 }
 
-void Game::createBlockCol(double x){
-    for (size_t i = 0, n = 5; i < n; ++i){
+void Game::Row_of_Blocks(int num)
+{
+    for (int i = 0; i < 5; i++)
+    {
         Block* block = new Block();
-        block->setPos(x,i*52); // 2 space b/w blocks (50 height of block)
+        block->setPos(num,i*32);
         scene->addItem(block);
     }
 }
 
-void Game::creatBlockGrid(){
-    for (size_t i = 0, n = 7; i < n; ++i){
-        createBlockCol(i*52);
+void Game::Block_Display()
+{
+    for (int i = 0; i < 15; i++)
+    {
+        Row_of_Blocks(i*32);
     }
 }
