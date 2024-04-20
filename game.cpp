@@ -39,24 +39,35 @@ void Game::start(){
     health->setPos(200,600);
     scene->addItem(health);
 
-    // To show the blocks
+    //Display the blocks
     Block_Display();
 }
 
-void Game::Row_of_Blocks(int num)
+
+//Block_Display function definition
+void Game::Block_Display()
 {
-    for (int i = 0; i < 5; i++)
+    int num=0;
+
+    //to form 8 rows each containing 15 blocks
+    for (int i = 0; i < 8; i++)
     {
-        Block* block = new Block();
-        block->setPos(num,i*32);
-        scene->addItem(block);
+        for (int j=0; j<15;j++)
+        {
+            Block * block= new Block();
+
+            //since the y value is the same for the blocks in the same row
+            // and each block has a width of 30.
+            block->setPos(j*32,num);
+            scene->addItem(block);
+        }
+
+        //since the height of each block is 30
+        //and we want the block in the next row to be exactly under it.
+        num+=30;
     }
 }
 
-void Game::Block_Display()
-{
-    for (int i = 0; i < 15; i++)
-    {
-        Row_of_Blocks(i*32);
-    }
-}
+
+
+

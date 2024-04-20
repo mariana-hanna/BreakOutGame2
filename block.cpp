@@ -7,7 +7,10 @@ Block::Block(QGraphicsItem *parent): QGraphicsRectItem(parent){
 
     //create a QBrush
     QBrush brush;
+
+    //format the blocks style
+    brush.setColor(Qt::gray);
     brush.setStyle(Qt::SolidPattern);
-    brush.setColor(Qt::yellow);
+
     setBrush(brush);
 }

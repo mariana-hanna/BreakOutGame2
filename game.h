@@ -14,7 +14,7 @@ public:
     Health * health;
 
     void start();
-    void Row_of_Blocks(int n);
+    void Row_of_Blocks(int num);
     void Block_Display();
 
     QGraphicsScene* scene;
