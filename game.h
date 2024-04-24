@@ -3,6 +3,7 @@
 
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include<QGraphicsPixmapItem>
 #include "score.h"
 #include "health.h"
 #include "Button.h"
@@ -10,6 +11,7 @@
 class Game: public QGraphicsView{
 
    Q_OBJECT
+QGraphicsPixmapItem *background;
 public:
     Game(QWidget* parent=NULL);
     Score * score;
