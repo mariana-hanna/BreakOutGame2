@@ -3,8 +3,12 @@
 
 #include <QGraphicsTextItem>
 
+class Game;
+
 class Score: public QGraphicsTextItem{
 public:
+     Game* game;
+
     Score(QGraphicsTextItem * parent=0);
     void increase();
     int getScore();
