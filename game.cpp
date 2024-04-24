@@ -135,6 +135,12 @@ void Game::displayGameOver(QString text)
     font.setBold(true);
     displayText->setFont(font);
     scene->addItem(displayText);
+
+    //To display Level: 1
+    QGraphicsTextItem* levelText = new QGraphicsTextItem("Level: 1"); 
+    levelText->setPos(410, 275); 
+    levelText->setFont(font); 
+    scene->addItem(levelText);
 }
 
 void Game::RestartGame()
