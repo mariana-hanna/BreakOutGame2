@@ -24,7 +24,13 @@ Game::Game(QWidget *parent): QGraphicsView(parent){
 void Game::start(){
 
     gameOver = false;
-
+    
+//Set the background 
+     QPixmap bgImage("C:\\Users\\sarah\\Desktop\\Game Image Options\\images (1).jpeg");  
+    background = new QGraphicsPixmapItem(bgImage);
+    background->setPos(0, 0);
+    scene->addItem(background);
+    
     // create a ball
     Ball* ball = new Ball();
     ball->setPos(390,500);
