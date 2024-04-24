@@ -16,10 +16,14 @@ void Health::decrease(){
     if (health <= 1){
         health--;
         setPlainText(QString("Health: ") + QString::number(health));
-        QMessageBox * msg = new QMessageBox;
-        msg->setText(QString("Game Over! Final Score: ") + QString::number(game->score->getScore()));
-        msg->setWindowTitle(QString("Game Over!"));
-        msg->exec();
+        //QMessageBox * msg = new QMessageBox;
+       // msg->setText(QString("Game Over! Final Score: ") + QString::number(game->score->getScore()));
+       // msg->setWindowTitle(QString("Game Over!"));
+       // msg->exec();
+
+        //game over calling
+        game->GameOver();
+
 
     }
     else{
