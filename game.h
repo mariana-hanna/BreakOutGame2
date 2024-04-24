@@ -19,7 +19,6 @@ public:
     Health * health;
 
 
-    void Row_of_Blocks(int n);
     void Block_Display();
     void GameOver();
     void displayGameOver(QString text);
