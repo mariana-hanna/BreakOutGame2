@@ -144,7 +144,7 @@ void Game::displayGameOver(QString text)
 
     //To display Level: 1
     QGraphicsTextItem* levelText = new QGraphicsTextItem("Level: 1"); 
-    levelText->setPos(410, 275); 
+    levelText->setPos(410, 200); 
     levelText->setFont(font); 
     scene->addItem(levelText);
 }
