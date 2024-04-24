@@ -18,7 +18,7 @@ Game::Game(QWidget *parent): QGraphicsView(parent){
 
     gameOver=false;
 
-   // qDebug() << "Game constructor: Signal-slot connections established.";
+    // qDebug() << "Game constructor: Signal-slot connections established.";
 }
 
 void Game::start(){
@@ -97,22 +97,20 @@ void Game::GameOver()
 
 void Game::displayGameOver(QString text)
 {
-     size_t n = scene->items().size();
-    //disable the scene
-    for(size_t i=0; i < n; i++)
+    // Disable the scene
+    size_t n = scene->items().size();
+    for(size_t i = 0; i < n; i++)
     {
         scene->items()[i]->setEnabled(false);
-
     }
 
+    // Pop up semi-transparent panel
+    showPanel(0, 0, 1024, 768, Qt::black, 0.65);
 
-    // pop up semi transparent panel
-    showPanel(0,0,1024,768,Qt::black,0.65);
+    // Draw panel
+    showPanel(312, 184, 400, 400, Qt::lightGray, 0.75);
 
-    // draw panel
-    showPanel(312,184,400,400,Qt::lightGray,0.75);
-
-    //play again Button
+    // Play again Button
     playAgain = new Button(QString("Play Again"));
     playAgain->setPos(410, 330);
     playAgain->setEnabled(true);
@@ -120,26 +118,36 @@ void Game::displayGameOver(QString text)
     scene->addItem(playAgain);
     connect(playAgain, SIGNAL(clicked()), this, SLOT(RestartGame()));
 
-    //exit button
-   exit = new Button(QString("Exit Game"));
+    // Exit button
+    exit = new Button(QString("Exit Game"));
     exit->setPos(410, 400);
     scene->addItem(exit);
     connect(exit, SIGNAL(clicked()), this, SLOT(close()));
 
-
-    //displaying the text
+    // Displaying the text
     QGraphicsTextItem* displayText = new QGraphicsTextItem(text);
-    displayText->setPos(410,225);
+    displayText->setPos(410, 225);
     QFont font;
-    font.setPointSize(12);  // font size
+    font.setPointSize(12);  // Font size
     font.setBold(true);
     displayText->setFont(font);
     scene->addItem(displayText);
+
+    // Display final health
+    QGraphicsTextItem* healthText = new QGraphicsTextItem("Final Health: " + QString::number(health->gethealth()));
+    healthText->setPos(410, 250);
+    scene->addItem(healthText);
+
+    // Display final score
+    QGraphicsTextItem* scoreText = new QGraphicsTextItem("Final Score: " + QString::number(score->getScore()));
+    scoreText->setPos(410, 275);
+    scene->addItem(scoreText);
 }
+
 
 void Game::RestartGame()
 {
-      qDebug() << "restartGame() slot called.";
+    qDebug() << "restartGame() slot called.";
     disconnect(this->playAgain, SIGNAL(clicked()), this, SLOT(RestartGame()));
     disconnect(this->exit, SIGNAL(clicked()), this, SLOT(close()));
 
@@ -151,7 +159,7 @@ void Game::RestartGame()
     }
 
     // Clear scene
-   // scene->clear();
+    // scene->clear();
 
     // Restart the game
     start();
@@ -170,6 +178,5 @@ void Game::showPanel(int x, int y, int width, int height, QColor color, double o
     panel->setOpacity(opacity);
     scene->addItem(panel);
 }
-
 
 
