@@ -7,13 +7,18 @@
 
 extern Game* game;
 
-Ball::Ball(QGraphicsItem *parent): QGraphicsRectItem(parent), QObject(){
-    // draw rect
-    setRect(0,0,20,20);
+Ball::Ball(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent)
+{
+
+
+    QPixmap pixmap(":/Image/Ball.png");
+    pixmap = pixmap.scaled(QSize(30, 30), Qt::KeepAspectRatio);
+    setPixmap(pixmap);
+
     QBrush brush;
     brush.setStyle(Qt::SolidPattern);
     brush.setColor(Qt::red);
-    setBrush(brush);
+    ///setBrush(brush);
 
     // move up right initially
     xVelocity = 0;
@@ -27,7 +32,7 @@ Ball::Ball(QGraphicsItem *parent): QGraphicsRectItem(parent), QObject(){
 
 
 double Ball::getCenterX(){
-    return x() + rect().width()/2;
+    return x() + boundingRect().width()/2;
 }
 
 void Ball::move(){
@@ -58,20 +63,20 @@ void Ball::move(){
 void Ball::reverseVelocityIfOutOfBounds(){
     // check if out of bound, if so, reverse the proper velocity
     double screenW = game->width();
-    double screenH = game->height();
+
 
     // left edge
-    if (mapToScene(rect().topLeft()).x() <= 0){
+    if (mapToScene(boundingRect().topLeft()).x() <= 0){
         xVelocity = -1 * xVelocity;
     }
 
     // right edge
-    if (mapToScene(rect().topRight()).x() >= screenW){
+    if (mapToScene(boundingRect().topRight()).x() >= screenW){
         xVelocity = -1 * xVelocity;
     }
 
     // top edge
-    if (mapToScene(rect().topLeft()).y() <= 0){
+    if (mapToScene(boundingRect().topLeft()).y() <= 0){
         yVelocity = -1 * yVelocity;
     }
 
