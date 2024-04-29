@@ -10,8 +10,8 @@
 
 class Game: public QGraphicsView{
 
-   Q_OBJECT
-QGraphicsPixmapItem *background;
+    Q_OBJECT
+    QGraphicsPixmapItem *background;
 public:
     Game(QWidget* parent=NULL);
     Score * score;
@@ -19,18 +19,19 @@ public:
     Health * health;
 
 
+
     void Block_Display();
     void GameOver();
     void displayGameOver(QString text);
- bool gameOver;
+    bool gameOver;
     QGraphicsScene* scene;
 
 public slots:
     void start();
-   void RestartGame();
+    void RestartGame();
 
 private:
-   void showPanel(int x, int y, int width, int height, QColor color, double opacity);
+    void showPanel(int x, int y, int width, int height, QColor color, double opacity);
     Button* playAgain;
     Button* exit;
 
