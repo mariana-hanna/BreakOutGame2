@@ -2,9 +2,11 @@
 #define BALL_H
 #include "paddle.h"
 
+#include<QGraphicsPixmapItem>
 #include <QGraphicsRectItem>
 
-class Ball: public QObject, public QGraphicsRectItem{
+class Ball: public QObject, public QGraphicsPixmapItem
+{
     Q_OBJECT
 public:
     // constructors
