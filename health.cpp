@@ -8,7 +8,7 @@ extern Game * game;
 Health::Health(QGraphicsTextItem *parent): QGraphicsTextItem(parent){
     health = 3;
     setPlainText(QString("Health: ") + QString::number(health));
-    setDefaultTextColor(Qt::red);
+    setDefaultTextColor(Qt::black);
     setFont(QFont("times", 16));
 }
 
