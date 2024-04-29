@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include "Button.h"
 #include <QGraphicsItem>
+#include <QFont>
 
 
 Game::Game(QWidget *parent): QGraphicsView(parent){
@@ -18,19 +19,20 @@ Game::Game(QWidget *parent): QGraphicsView(parent){
 
     gameOver=false;
 
-   // qDebug() << "Game constructor: Signal-slot connections established.";
+    // qDebug() << "Game constructor: Signal-slot connections established.";
 }
 
 void Game::start(){
 
     gameOver = false;
-    
-//Set the background 
-     QPixmap bgImage("C:\\Users\\sarah\\Desktop\\Game Image Options\\images (1).jpeg");  
+
+    //Set the background
+   /* QPixmap bgImage(":/Image/Background.jpg");
     background = new QGraphicsPixmapItem(bgImage);
-    background->setPos(0, 0);
+    background->setPos(800, 60);
     scene->addItem(background);
-    
+    */
+
     // create a ball
     Ball* ball = new Ball();
     ball->setPos(390,500);
@@ -58,7 +60,14 @@ void Game::start(){
     health->setPos(700,30);
     scene->addItem(health);
 
-
+    //To display Level: 1
+   QGraphicsTextItem* levelText = new QGraphicsTextItem("Level: 1");
+    levelText->setPos(700, 60);
+    QFont fontt;
+    fontt.setPointSize(16);  // font size
+   // fontt.setBold(true);
+    levelText->setFont(fontt);
+    scene->addItem(levelText);
 
     // To show the blocks
     Block_Display();
@@ -103,7 +112,7 @@ void Game::GameOver()
 
 void Game::displayGameOver(QString text)
 {
-     size_t n = scene->items().size();
+    size_t n = scene->items().size();
     //disable the scene
     for(size_t i=0; i < n; i++)
     {
@@ -127,7 +136,7 @@ void Game::displayGameOver(QString text)
     connect(playAgain, SIGNAL(clicked()), this, SLOT(RestartGame()));
 
     //exit button
-   exit = new Button(QString("Exit Game"));
+    exit = new Button(QString("Exit Game"));
     exit->setPos(410, 400);
     scene->addItem(exit);
     connect(exit, SIGNAL(clicked()), this, SLOT(close()));
@@ -142,16 +151,12 @@ void Game::displayGameOver(QString text)
     displayText->setFont(font);
     scene->addItem(displayText);
 
-    //To display Level: 1
-    QGraphicsTextItem* levelText = new QGraphicsTextItem("Level: 1"); 
-    levelText->setPos(410, 200); 
-    levelText->setFont(font); 
-    scene->addItem(levelText);
+
 }
 
 void Game::RestartGame()
 {
-      qDebug() << "restartGame() slot called.";
+    qDebug() << "restartGame() slot called.";
     disconnect(this->playAgain, SIGNAL(clicked()), this, SLOT(RestartGame()));
     disconnect(this->exit, SIGNAL(clicked()), this, SLOT(close()));
 
@@ -163,7 +168,7 @@ void Game::RestartGame()
     }
 
     // Clear scene
-   // scene->clear();
+    // scene->clear();
 
     // Restart the game
     start();
@@ -182,5 +187,4 @@ void Game::showPanel(int x, int y, int width, int height, QColor color, double o
     panel->setOpacity(opacity);
     scene->addItem(panel);
 }
-
 
