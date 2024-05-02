@@ -11,20 +11,24 @@ CONFIG += c++17
 SOURCES += \
     ball.cpp \
     block.cpp \
+    button.cpp \
     game.cpp \
     health.cpp \
     main.cpp \
     paddle.cpp \
-    score.cpp
+    score.cpp \
+    weapon.cpp
 
 HEADERS += \
     ball.h \
     block.h \
+    button.h \
     game.h \
     health.h \
     paddle.h \
     Q_OBJECT \
-    score.h
+    score.h \
+    weapon.h
 
 FORMS +=
 
